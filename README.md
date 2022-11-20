@@ -4,7 +4,7 @@
 
 1.  On local workstation
 * run gradle command 'gradlew clean build'
-* run command 'docker-compose up' to launch mongo database instance, the db instance wiil be bound to port 27017
+* run command 'docker-compose up' to launch mongo database instance, the db instance will be bound to port 27017
 * start the application with active profile -- local
 
 2.  On remote server
@@ -22,9 +22,9 @@
 7. Testing - @WebFluxTest for api layer, @DataMongoTest for repositories layer, unit tests for dedicated classes
 
 ## 3-d party integrations
-1. KeyCdn service - to get geo data by ip address
-2. OpenWeatherMap - to get weather conditions by latitude and longitude
-3. AmazonAws - to get public ip address in case of application launching on local workstation
+1. [KeyCdn service](https://tools.keycdn.com/) - to get geo data by ip address
+2. [OpenWeatherMap](https://openweathermap.org/api) - to get weather conditions by latitude and longitude
+3. [AmazonAws](https://checkip.amazonaws.com) - to get public ip address in case of application launching on local workstation
 
 ## Functional requirements
 Implement a RESTful web service that would handle GET requests to path “weather” by returning the
