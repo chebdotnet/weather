@@ -17,7 +17,7 @@ public class OpenWeatherMapService {
     private final WebClient openWeatherMapClient;
     private final OpenWeatherMapProperties openWeatherMapProperties;
 
-    @Cacheable("weatherByGeoData")
+    @Cacheable(value = "weatherByGeoData", key = "#geo.id")
     public Mono<OpenWeatherMapResponse> getWeatherByGeoData(GeoDocument geo) {
         return openWeatherMapClient.get()
                 .uri(uriBuilder ->
