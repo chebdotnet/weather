@@ -1,3 +1,6 @@
+#caching:
+#  spring:
+#    hotelListTTL: 43200
 spring:
   data:
     mongodb:

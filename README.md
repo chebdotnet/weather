@@ -15,11 +15,12 @@
 ## Technology stack
 1. Java 17 -- Eclipse Adoptium jdk-17.0.2.8-hotspot
 2. Application framework - SpringBoot 2.7.5
-3. Api Layer - WebReactive
-4. DB Layer - Mongo DB
-5. Libraries - testcontainers, masptruct, lombok
-6. Dependency management and build automation tool - Gradle
-7. Testing - @WebFluxTest for api layer, @DataMongoTest for repositories layer, unit tests for dedicated classes
+3. Package principle - Package by Feature
+4. Api Layer - WebReactive
+5. DB Layer - Mongo DB
+6. Libraries - testcontainers, masptruct, lombok
+7. Dependency management and build automation tool - Gradle
+8. Testing - @WebFluxTest for api layer, @DataMongoTest for repositories layer, unit tests for dedicated classes
 
 ## 3-d party integrations
 1. [KeyCdn service](https://tools.keycdn.com/) - to get geo data by ip address

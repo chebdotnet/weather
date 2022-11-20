@@ -2,6 +2,7 @@ package net.chebdotnet.weather.weatherdata.openweathermap;
 
 import lombok.RequiredArgsConstructor;
 import net.chebdotnet.weather.geodata.GeoDocument;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
@@ -16,6 +17,7 @@ public class OpenWeatherMapService {
     private final WebClient openWeatherMapClient;
     private final OpenWeatherMapProperties openWeatherMapProperties;
 
+    @Cacheable("weatherByGeoData")
     public Mono<OpenWeatherMapResponse> getWeatherByGeoData(GeoDocument geo) {
         return openWeatherMapClient.get()
                 .uri(uriBuilder ->

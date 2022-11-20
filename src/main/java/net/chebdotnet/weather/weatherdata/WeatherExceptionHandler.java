@@ -6,7 +6,6 @@ import net.chebdotnet.weather.ip.AmazonAwsServiceException;
 import net.chebdotnet.weather.weatherdata.openweathermap.OpenWeatherMapException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import reactor.core.publisher.Mono;
 
 @Slf4j
 @ControllerAdvice

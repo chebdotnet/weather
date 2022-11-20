@@ -31,6 +31,7 @@ dependencies {
 	implementation "org.springframework.boot:spring-boot-starter-cache:$springBootVersion"
 	implementation "org.springframework.boot:spring-boot-starter-webflux:$springBootVersion"
 	implementation "org.springframework.boot:spring-boot-starter-data-mongodb-reactive:$springBootVersion"
+	implementation "org.springframework.boot:spring-boot-starter-cache:$springBootVersion"
 
 	implementation "org.mapstruct:mapstruct:$mapstructVersion"
 	implementation "org.mapstruct:mapstruct-processor:$mapstructVersion"
