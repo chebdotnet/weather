@@ -1,0 +1,27 @@
+caching:
+  spring:
+#    hotelListTTL: 43200
+    hotelListTTL: 2
+spring:
+  data:
+    mongodb:
+      uri: mongodb://root:rootpassword@localhost:27017/?authSource=admin&authMechanism=SCRAM-SHA-1
+      database: weather
+      username: root
+      password: rootpassword
+server:
+  port: 9091
+services:
+  openweathermap:
+    url: http://api.openweathermap.org/data/2.5/weather
+    api-key: b00a815438c41647168e0982e3440de9
+    retries: 5
+    back-off: 750
+  keycdn:
+    url: https://tools.keycdn.com/geo.json
+    retries: 3
+    back-off: 500
+  amazonaws:
+    url: https://checkip.amazonaws.com
+    retries: 7
+    back-off: 900

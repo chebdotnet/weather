@@ -1,0 +1,50 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.7.5'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+group = 'net.chebdotnet'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+ext {
+	set('springBootVersion', '2.7.5')
+	set('mapstructVersion', '1.5.3.Final')
+	set('lombokMapstructVersion', '0.2.0')
+	set('lombokVersion', '1.18.24')
+	set('reactorTestVersion', '3.4.24')
+	set('testContainersVersion', '1.17.6')
+}
+
+dependencies {
+	implementation "org.springframework.boot:spring-boot-starter-cache:$springBootVersion"
+	implementation "org.springframework.boot:spring-boot-starter-webflux:$springBootVersion"
+	implementation "org.springframework.boot:spring-boot-starter-data-mongodb-reactive:$springBootVersion"
+
+	implementation "org.mapstruct:mapstruct:$mapstructVersion"
+	implementation "org.mapstruct:mapstruct-processor:$mapstructVersion"
+	annotationProcessor "org.mapstruct:mapstruct-processor:$mapstructVersion"
+	annotationProcessor "org.projectlombok:lombok-mapstruct-binding:$lombokMapstructVersion"
+
+	compileOnly "org.projectlombok:lombok:$lombokVersion"
+	annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+	testImplementation "org.springframework.boot:spring-boot-starter-test:2.7.5"
+	testImplementation "io.projectreactor:reactor-test:$reactorTestVersion"
+	testImplementation "org.testcontainers:testcontainers:$testContainersVersion"
+	testImplementation "org.testcontainers:mongodb:$testContainersVersion"
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
