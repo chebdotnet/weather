@@ -3,6 +3,7 @@ package net.chebdotnet.weather.weatherdata;
 import lombok.RequiredArgsConstructor;
 import net.chebdotnet.weather.geodata.GeoDocument;
 import net.chebdotnet.weather.weatherdata.openweathermap.OpenWeatherMapService;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
@@ -14,7 +15,7 @@ public class WeatherService {
     private final WeatherMapper mapper;
     private final WeatherRepository weatherRepository;
 
-    //    @Cacheable("weatherData")
+    @Cacheable("weatherData")
     public Mono<WeatherDto> getWeatherByGeoData(GeoDocument geoDocument) {
         return openWeatherMapService.getWeatherByGeoData(geoDocument)
                 .flatMap(openWeatherMapEntry -> {

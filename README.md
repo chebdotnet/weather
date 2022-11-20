@@ -1,2 +1,44 @@
-# weather
-weather
+# Weather service
+
+## Running the project
+
+1.  On local workstation
+* run gradle command 'gradlew clean build'
+* run command 'docker-compose up' to launch mongo database instance, the db instance wiil be bound to port 27017
+* start the application with active profile -- local
+
+2.  On remote server
+* deploy jar file depending on your server settings
+* confirm mongo db instance localhost:27017 is working on the server
+
+
+## Technology stack
+1. Java 17 -- Eclipse Adoptium jdk-17.0.2.8-hotspot
+2. Application framework - SpringBoot 2.7.5
+3. Api Layer - WebReactive
+4. DB Layer - Mongo DB
+5. Libraries - testcontainers, masptruct, lombok
+6. Dependency management and build automation tool - Gradle
+7. Testing - @WebFluxTest for api layer, @DataMongoTest for repositories layer, unit tests for dedicated classes
+
+## 3-d party integrations
+1. KeyCdn service - to get geo data by ip address
+2. OpenWeatherMap - to get weather conditions by latitude and longitude
+3. AmazonAws - to get public ip address in case of application launching on local workstation
+
+## Functional requirements
+Implement a RESTful web service that would handle GET requests to path “weather” by returning the
+weather data determined by IP of the request originator.
+Upon receiving a request, the service should perform a geolocation search using a non-commercial, 3rd party
+IP to location provider.
+Having performed the reverse geo search service should use another non-commercial, 3rd party service to
+determine current weather conditions using the coordinates of the IP.
+
+## Non-functional requirements
+1. Test coverage should be not less than 80%
+2. Implemented web service should be resilient to 3rd party service unavailability
+3. Data from 3rd party providers should be stored in a database
+4. An in-memory cache should be used as the first layer in data retrieval
+5. DB schema should allow a historical analysis of both queries from a specific IP and of weather
+conditions for specific coordinates
+6. DB schema versioning should be implemented

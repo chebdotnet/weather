@@ -12,6 +12,8 @@ import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.util.Enumeration;
 
+import static java.util.Objects.requireNonNull;
+
 @Slf4j
 @Service
 @Profile("!local")
@@ -20,7 +22,7 @@ class RemoteIpResolverService implements IpResolverService {
 
     @Override
     public Mono<String> resolve() {
-        return Mono.just(getAddress());
+        return Mono.just(requireNonNull(getAddress()));
     }
 
     private String getAddress() {
@@ -28,11 +30,11 @@ class RemoteIpResolverService implements IpResolverService {
             Enumeration<NetworkInterface> networkInterfaces = NetworkInterface
                     .getNetworkInterfaces();
             while (networkInterfaces.hasMoreElements()) {
-                NetworkInterface ni = (NetworkInterface) networkInterfaces
+                NetworkInterface ni = networkInterfaces
                         .nextElement();
                 Enumeration<InetAddress> nias = ni.getInetAddresses();
                 while (nias.hasMoreElements()) {
-                    InetAddress ia = (InetAddress) nias.nextElement();
+                    InetAddress ia = nias.nextElement();
                     if (!ia.isLinkLocalAddress() && !ia.isLoopbackAddress() && ia instanceof Inet4Address) {
                         log.info("Got ip {} from request", ia.getHostAddress());
                         return ia.getHostAddress();

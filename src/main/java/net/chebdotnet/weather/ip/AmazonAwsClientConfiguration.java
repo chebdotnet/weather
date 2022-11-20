@@ -7,6 +7,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+
 @Configuration
 @RequiredArgsConstructor
 public class AmazonAwsClientConfiguration {
@@ -17,7 +20,7 @@ public class AmazonAwsClientConfiguration {
     WebClient amazonAwsClient() {
         return WebClient.builder()
                 .baseUrl(amazonAwsClientProperties.getUrl())
-                .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                .defaultHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
                 .build();
     }
 }
