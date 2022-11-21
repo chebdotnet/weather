@@ -3,14 +3,19 @@
 ## Running the project
 
 1.  On local workstation
-* run gradle command 'gradlew clean build'
 * run command 'docker-compose up' to launch mongo database instance, the db instance will be bound to port 27017
-* start the application with active profile -- local
+* run gradle command 'gradlew clean build'
+* start the application with active profile -- local: java -jar weather-0.0.1-SNAPSHOT.jar
+  --spring.profiles.active=local
+* call the endpoint http://localhost:9091/weather from browser, curl or postman either
 
 2.  On remote server
-* deploy jar file depending on your server settings
-* confirm mongo db instance localhost:27017 is working on the server
 
+* confirm mongo db instance localhost:27017 is working on the server and confirms credentials provided in
+  application.yaml
+* deploy jar file depending on your server settings or execute a command: java -jar weather-0.0.1-SNAPSHOT.jar
+* call the endpoint http://[your-server-address]:9091/weather from browser, curl or postman either on your client
+  machine
 
 ## Technology stack
 1. Java 17 -- Eclipse Adoptium jdk-17.0.2.8-hotspot
