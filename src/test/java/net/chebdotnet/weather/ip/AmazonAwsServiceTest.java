@@ -13,6 +13,7 @@ import reactor.test.StepVerifier;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Answers.RETURNS_DEEP_STUBS;
 import static org.mockito.Mockito.when;
+import static org.springframework.http.HttpHeaders.CACHE_CONTROL;
 
 @ExtendWith(SpringExtension.class)
 class AmazonAwsServiceTest {
@@ -35,6 +36,7 @@ class AmazonAwsServiceTest {
         when(amazonAwsClientProperties.getBackOff()).thenReturn(500);
 
         when(amazonAwsClient.get()
+                .header(CACHE_CONTROL, "no-cache")
                 .retrieve()
                 .bodyToMono(String.class)
         ).thenReturn(Mono.just(MOCK_IP_ADDRESS));
@@ -43,9 +45,7 @@ class AmazonAwsServiceTest {
 
         StepVerifier
                 .create(ipAddressMono)
-                .consumeNextWith(ipAddress -> {
-                    assertEquals(MOCK_IP_ADDRESS, ipAddress);
-                })
+                .consumeNextWith(ipAddress -> assertEquals(MOCK_IP_ADDRESS, ipAddress))
                 .verifyComplete();
     }
 }

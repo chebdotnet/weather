@@ -11,8 +11,6 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-//@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-//@JsonNaming(PropertyNamingStrategies.UpperCamelCaseStrategy.class)
 public class KeyCdnResponse {
     private String status;
     private String description;

@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ExtendWith(SpringExtension.class)
 class WeatherMapperTest {
 
-    private WeatherMapper weatherMapper = new WeatherMapperImpl();
+    private final WeatherMapper weatherMapper = new WeatherMapperImpl();
 
     @Test
     @DisplayName("Should map weather document to weather dto")

@@ -16,7 +16,7 @@ public class KeyCdnService {
     private final KeyCdnProperties keyCdnProperties;
     private final WebClient keyCdnClient;
 
-    @Cacheable("geoData")
+    @Cacheable(value = "geoData", key = "#ipAddress")
     public Mono<KeyCdnResponse> getGeoDataByIp(String ipAddress) {
         return keyCdnClient.get()
                 .uri(uriBuilder -> uriBuilder

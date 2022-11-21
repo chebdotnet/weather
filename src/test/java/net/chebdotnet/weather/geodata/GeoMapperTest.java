@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ExtendWith(SpringExtension.class)
 class GeoMapperTest {
 
-    private GeoMapper mapper = new GeoMapperImpl();
+    private final GeoMapper mapper = new GeoMapperImpl();
 
     @Test
     void shouldMapGeoDataResponseToDocument() {

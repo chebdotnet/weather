@@ -5,6 +5,7 @@ import net.chebdotnet.weather.weatherdata.openweathermap.OpenWeatherMapResponse;
 import reactor.core.publisher.Mono;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class WeatherTestUtility {
 
@@ -15,6 +16,13 @@ public class WeatherTestUtility {
     public static final String MOCK_BASE = "base";
     public static final String MOCK_IP_ADDRESS = "5.199.143.67";
     public static final String MOCK_TEMPERATURE = "20";
+    public static final String MOCK_ALL = "0";
+    public static final String MOCK_SPEED = "5.66";
+    public static final String MOCK_VISIBILITY = "visibility";
+    public static final String MOCK_COUNTRY = "de";
+    public static final String MOCK_SUNRISE = "sunrise";
+    public static final String MOCK_WEATHER_MAIN = "Clear";
+    public static final String MOCK_WEATHER_DESCRIPTION = "clear sky";
 
     public static OpenWeatherMapResponse buildOpenWeatherMapResponse() {
         OpenWeatherMapResponse.Coordinates coordinates = new OpenWeatherMapResponse.Coordinates();
@@ -29,10 +37,38 @@ public class WeatherTestUtility {
     }
 
     static WeatherDocument buildWeatherDocument() {
+        WeatherDocument.Coordinates coord = new WeatherDocument.Coordinates();
+        coord.setLat(new BigDecimal(MOCK_LAT));
+        coord.setLon(new BigDecimal(MOCK_LON));
+
+        WeatherDocument.Main main = new WeatherDocument.Main();
+        main.setTemp(MOCK_TEMPERATURE);
+
+        WeatherDocument.Clouds clouds = new WeatherDocument.Clouds();
+        clouds.setAll(MOCK_ALL);
+
+        WeatherDocument.Wind wind = new WeatherDocument.Wind();
+        wind.setSpeed(MOCK_SPEED);
+
+        WeatherDocument.Sys sys = new WeatherDocument.Sys();
+        sys.setCountry(MOCK_COUNTRY);
+        sys.setSunrise(MOCK_SUNRISE);
+
+        WeatherDocument.Weather weather = new WeatherDocument.Weather();
+        weather.setMain(MOCK_WEATHER_MAIN);
+        weather.setDescription(MOCK_WEATHER_DESCRIPTION);
+
         return WeatherDocument.builder()
                 .id(MOCK_ID)
                 .name(MOCK_NAME)
                 .base(MOCK_BASE)
+                .visibility(MOCK_VISIBILITY)
+                .coord(coord)
+                .main(main)
+                .clouds(clouds)
+                .wind(wind)
+                .sys(sys)
+                .weather(List.of(weather))
                 .build();
     }
 
@@ -48,7 +84,31 @@ public class WeatherTestUtility {
 
         WeatherDto.Main main = new WeatherDto.Main();
         main.setTemp(MOCK_TEMPERATURE);
-        return WeatherDto.builder().coord(coord).main(main).base(MOCK_BASE).build();
+
+        WeatherDto.Clouds clouds = new WeatherDto.Clouds();
+        clouds.setAll(MOCK_ALL);
+
+        WeatherDto.Wind wind = new WeatherDto.Wind();
+        wind.setSpeed(MOCK_SPEED);
+
+        WeatherDto.Sys sys = new WeatherDto.Sys();
+        sys.setCountry(MOCK_COUNTRY);
+        sys.setSunrise(MOCK_SUNRISE);
+
+        WeatherDto.Weather weather = new WeatherDto.Weather();
+        weather.setMain(MOCK_WEATHER_MAIN);
+        weather.setDescription(MOCK_WEATHER_DESCRIPTION);
+
+        return WeatherDto.builder()
+                .base(MOCK_BASE)
+                .visibility(MOCK_VISIBILITY)
+                .coord(coord)
+                .main(main)
+                .clouds(clouds)
+                .wind(wind)
+                .sys(sys)
+                .weather(List.of(weather))
+                .build();
     }
 
     static Mono<WeatherDto> buildWeatherDtoMono() {

@@ -6,6 +6,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 import static java.time.Duration.ofMillis;
+import static org.springframework.http.HttpHeaders.CACHE_CONTROL;
 import static reactor.util.retry.Retry.backoff;
 
 @Service
@@ -17,6 +18,7 @@ public class AmazonAwsService {
 
     public Mono<String> getPublicIp() {
         return amazonAwsClient.get()
+                .header(CACHE_CONTROL, "no-cache")
                 .retrieve()
                 .bodyToMono(String.class)
                 .retryWhen(backoff(amazonAwsClientProperties.getRetries(), ofMillis(amazonAwsClientProperties.getBackOff()))

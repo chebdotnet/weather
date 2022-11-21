@@ -23,9 +23,6 @@ import static org.mockito.Mockito.when;
 @ExtendWith(SpringExtension.class)
 class OpenWeatherMapServiceTest {
 
-//    private static final String MOCK_LAT = "51.2705";
-//    private static final String MOCK_LON = "6.8144";
-
     @Mock(answer = RETURNS_DEEP_STUBS)
     private WebClient openWeatherMapClient;
 

@@ -14,7 +14,7 @@ public class GeoDataService {
     private final KeyCdnService keyCdnService;
     private final GeoRepository geoRepository;
     private final GeoMapper geoMapper;
-    
+
     public Mono<GeoDocument> getGeoDataByIpAddress(String ipAddress) {
         return keyCdnService.getGeoDataByIp(ipAddress)
                 .flatMap(entry -> {

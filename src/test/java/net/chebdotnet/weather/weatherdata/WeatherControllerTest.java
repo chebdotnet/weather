@@ -53,9 +53,17 @@ public class WeatherControllerTest {
                 .expectStatus().isOk()
                 .expectHeader().contentType(APPLICATION_JSON_VALUE)
                 .expectBody(WeatherDto.class)
+                .value(WeatherDto::getBase, equalTo(MOCK_BASE))
+                .value(WeatherDto::getVisibility, equalTo(MOCK_VISIBILITY))
                 .value(weatherDto -> weatherDto.getCoord().getLat(), equalTo(new BigDecimal(MOCK_LAT)))
                 .value(weatherDto -> weatherDto.getCoord().getLon(), equalTo(new BigDecimal(MOCK_LON)))
-                .value(weatherDto -> weatherDto.getMain().getTemp(), equalTo(MOCK_TEMPERATURE));
+                .value(weatherDto -> weatherDto.getMain().getTemp(), equalTo(MOCK_TEMPERATURE))
+                .value(weatherDto -> weatherDto.getClouds().getAll(), equalTo(MOCK_ALL))
+                .value(weatherDto -> weatherDto.getWind().getSpeed(), equalTo(MOCK_SPEED))
+                .value(weatherDto -> weatherDto.getSys().getCountry(), equalTo(MOCK_COUNTRY))
+                .value(weatherDto -> weatherDto.getSys().getSunrise(), equalTo(MOCK_SUNRISE))
+                .value(weatherDto -> weatherDto.getWeather().get(0).getMain(), equalTo(MOCK_WEATHER_MAIN))
+                .value(weatherDto -> weatherDto.getWeather().get(0).getDescription(), equalTo(MOCK_WEATHER_DESCRIPTION));
     }
 
 }

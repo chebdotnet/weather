@@ -12,6 +12,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
+import java.math.BigDecimal;
+
 import static net.chebdotnet.weather.weatherdata.WeatherTestUtility.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -39,6 +41,17 @@ class WeatherRepositoryTest {
                 .consumeNextWith(item -> {
                     assertNotNull(item.getId());
                     assertEquals(item.getName(), MOCK_NAME);
+                    assertEquals(item.getBase(), MOCK_BASE);
+                    assertEquals(item.getVisibility(), MOCK_VISIBILITY);
+                    assertEquals(item.getCoord().getLat(), new BigDecimal(MOCK_LAT));
+                    assertEquals(item.getCoord().getLon(), new BigDecimal(MOCK_LON));
+                    assertEquals(item.getMain().getTemp(), MOCK_TEMPERATURE);
+                    assertEquals(item.getClouds().getAll(), MOCK_ALL);
+                    assertEquals(item.getWind().getSpeed(), MOCK_SPEED);
+                    assertEquals(item.getSys().getCountry(), MOCK_COUNTRY);
+                    assertEquals(item.getSys().getSunrise(), MOCK_SUNRISE);
+                    assertEquals(item.getWeather().get(0).getMain(), MOCK_WEATHER_MAIN);
+                    assertEquals(item.getWeather().get(0).getDescription(), MOCK_WEATHER_DESCRIPTION);
                 })
                 .verifyComplete();
     }
