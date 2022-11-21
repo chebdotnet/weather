@@ -11,7 +11,7 @@
 
 2.  On remote server
 
-* confirm mongo db instance localhost:27017 is working on the server and confirms credentials provided in
+* confirm mongo db instance localhost:27017 is working on the server and accepts credentials provided in
   application.yaml
 * deploy jar file depending on your server settings or execute a command: java -jar weather-0.0.1-SNAPSHOT.jar
 * call the endpoint http://[your-server-address]:9091/weather from browser, curl or postman either on your client
